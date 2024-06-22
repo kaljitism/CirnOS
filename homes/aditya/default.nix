@@ -16,7 +16,7 @@ in
     ./hyprland.nix
     ./mimelist.nix
     ./packages.nix
-    ./starship.nix
+    # ./starship.nix
     ./sway.nix
     ./theme.nix
   ];
