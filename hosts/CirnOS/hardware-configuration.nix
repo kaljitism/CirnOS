@@ -5,44 +5,41 @@
 
 {
   imports =
-    [
-      (modulesPath + "/installer/scan/not-detected.nix")
+    [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "vmd" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/2f776d95-b8d5-429d-9707-5932f66c74b4";
-    fsType = "btrfs";
-    options = [ "subvol=@" ];
-  };
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/4e286734-1eee-494a-825f-bb828132fc3a";
+      fsType = "ext4";
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/8AEB-96D6";
-    fsType = "vfat";
-  };
+  boot.initrd.luks.devices."luks-0c5b84f1-c2ff-44a4-b506-453ce6ab41fb".device = "/dev/disk/by-uuid/0c5b84f1-c2ff-44a4-b506-453ce6ab41fb";
 
-  fileSystems."/mnt/Windows" = {
-    device = "/dev/disk/by-uuid/FEAC16F7AC16AA63";
-    fsType = "ntfs-3g";
-    options = [ "rw" "uid=1000" ];
-  };
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/BC98-69A1";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
+    };
 
-  swapDevices = [ ];
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/4dfa5e37-1c58-45e6-bb77-1c9722e9202c"; }
+    ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp1s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp3s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware = {
-    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-    uinput.enable = true;
-  };
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = false;
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
