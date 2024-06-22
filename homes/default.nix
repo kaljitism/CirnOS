@@ -23,5 +23,7 @@
     };
 
     users.aditya = ./aditya;
+};
+
 }
 
