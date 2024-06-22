@@ -139,7 +139,7 @@
 
   # network
   networking = {
-    hostName = "CirnOS";
+    hostName = "nixos";
     networkmanager.enable = true;
   };
 
