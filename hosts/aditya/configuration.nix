@@ -27,10 +27,10 @@
   };
 
   # virtualisation
-  # programs.virt-manager.enable = true;
-  # virtualisation = {
-  #   libvirtd.enable = true;
-  # };
+  programs.virt-manager.enable = true;
+  virtualisation = {
+    libvirtd.enable = true;
+  };
 
   services = {
     envfs.enable = true;
@@ -135,12 +135,6 @@
     };
   };
 
-  # network
-  networking = {
-    hostName = "nixos";
-    networkmanager.enable = true;
-  };
-
   # bluetooth
   hardware.bluetooth = {
     enable = true;
@@ -180,5 +174,5 @@
     # '';
   };
 
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 }
