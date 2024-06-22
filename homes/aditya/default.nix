@@ -5,7 +5,7 @@ in
 { pkgs, impurity, ... }: {
   imports = [
     # Cachix
-    # ./cachix.nix
+    ./cachix.nix
     ## Dotfiles (manual)
     ./dotfiles.nix
     # Stuff
@@ -16,7 +16,7 @@ in
     ./hyprland.nix
     ./mimelist.nix
     ./packages.nix
-    # ./starship.nix
+    ./starship.nix
     ./sway.nix
     ./theme.nix
   ];
@@ -61,5 +61,5 @@ in
   programs = {
     home-manager.enable = true;
   };
-  home.stateVersion = "23.11"; # this must be the version at which you have started using the program
+  home.stateVersion = "23.05"; # this must be the version at which you have started using the program
 }
