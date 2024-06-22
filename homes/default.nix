@@ -27,7 +27,7 @@
       # name of the user = directory
       # more users can be added this way
       # as long as their home directories exist
-      end = ./end;
+      aditya = ./aditya;
     };
   };
 }
