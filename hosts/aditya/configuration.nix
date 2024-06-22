@@ -129,10 +129,8 @@
   '';
   # user
   users = {
-    defaultUserShell = pkgs.zsh;
     users.${username} = {
       isNormalUser = true;
-      shell = pkgs.zsh;
       extraGroups = [ "networkmanager" "wheel" "video" "input" "uinput" "libvirtd" ];
     };
   };
@@ -151,7 +149,6 @@
 
   # Boot
   boot = {
-    tmp.cleanOnBoot = true;
     supportedFilesystems = [ "btrfs" "ext4" "fat32" "ntfs" ];
     loader = {
       grub = {
