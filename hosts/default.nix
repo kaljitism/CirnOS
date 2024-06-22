@@ -27,7 +27,7 @@ in
           impurity.enable = true;
         }
 
-        ./nixos # this imports your entire host configuration in one swoop
+        ./CirnOS # this imports your entire host configuration in one swoop
 
         # this part is basically the same as putting configuration in your
         # configuration.nix, but is done on the topmost level for your convenience
