@@ -23,6 +23,10 @@
     };
 
     # per-user Home Manager configuration
+  users.aditya = {
+    home.username = lib.mkForce "aditya";
+  };
+
     users = {
       # name of the user = directory
       # more users can be added this way
