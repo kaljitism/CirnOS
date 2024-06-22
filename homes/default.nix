@@ -24,7 +24,7 @@
 
     # per-user Home Manager configuration
   users.aditya = {
-    ./aditya
+    
     home.username = lib.mkForce "aditya";
   };
   };
