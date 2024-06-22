@@ -31,10 +31,10 @@ in
 
         # this part is basically the same as putting configuration in your
         # configuration.nix, but is done on the topmost level for your convenience
-        #{
-          #networking.hostName = "nixos";
-         # _module.args = { username = "aditya"; };
-        #}
+        {
+          networking.hostName = "nixos";
+          _module.args = { username = "aditya"; };
+        }
       ]
       ++ homes; # imports the home-manager related configurations
   };
