@@ -26,6 +26,7 @@
   users.aditya = {
     
     home.username = "aditya";
+home.stateVersion = "24.05";
   };
   };
 }
