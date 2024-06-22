@@ -22,12 +22,8 @@
       inherit inputs self impurity;
     };
 
-    # per-user Home Manager configuration
-  users.aditya = {
-    
-    home.username = "aditya";
-home.stateVersion = "24.05";
-  };
-  };
+    users.aditya.home.username = "aditya";
+    users.aditya.home.stateVersion = "24.05";
+    users.aditya = ./aditya;
 }
 
