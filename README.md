@@ -9,7 +9,7 @@
   - I mount my Windows partition with a specific UUID to /mnt/Windows
 - So this configuration likely won't work on your device... idk
 ```bash
-git clone https://github.com/end-4/CirnOS.git && cd CirnOS
+git clone https://github.com/kaljitism/CirnOS.git && cd CirnOS
 IMPURITY_PATH=$(pwd) sudo --preserve-env=IMPURITY_PATH nixos-rebuild switch --flake . --impure
 ```
 
