@@ -13,6 +13,7 @@
     ];
 
     systemPackages = with pkgs; [
+      electron
       gnome-extension-manager
       nautilus-open-any-terminal
       morewaita-icon-theme
@@ -21,7 +22,7 @@
       lexend
       gnome.nautilus-python
       twitter-color-emoji
-      cheese # webcam tool
+      gnome.cheese # webcam tool
       gnome.gnome-music
       gnome.epiphany # web browser
       gnome.geary # email reader

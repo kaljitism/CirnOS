@@ -32,6 +32,10 @@
     libvirtd.enable = true;
   };
 
+  nixpkgs.config.permittedInsecurePackages = [
+                "electron-25.9.0"
+              ];
+
   services = {
     envfs.enable = true;
     greetd = {
@@ -104,12 +108,12 @@
   # packages
   environment = {
     localBinInPath = true;
-    systemPackages = with pkgs; [
+    systemPackages = with pkgs; with nodePackages_latest; with gnome; with libsForQt5; [
       curl
       zsh
       git
       gh
-      kdePackages.kate
+      kate
       gnomeExtensions.wallpaper-slideshow
       neovim
       vim
@@ -119,6 +123,102 @@
       wget
       nixpkgs-fmt
       nixfmt
+
+            discord
+      spotify
+      hakuneko
+      calibre
+      torrential
+      lutris
+
+      i3 # gaming
+      sway
+
+      # Development
+      jetbrains.jdk
+      jetbrains.idea-ultimate
+      jetbrains.webstorm
+      jetbrains.datagrip
+      android-studio
+      nvidia-docker
+      docker
+      podman
+      qemu_kvm
+      dart
+      flutter
+      nodejs
+      gjs
+      bun
+      cargo
+      go
+      gcc
+      typescript
+      eslint
+      # very important stuff
+      uwuify
+
+
+      # gui
+      blueberry
+      (mpv.override { scripts = [ mpvScripts.mpris ]; })
+      d-spy
+      dolphin
+      figma-linux
+      kolourpaint
+      github-desktop
+      gnome.nautilus
+      icon-library
+      dconf-editor
+      qt5.qtimageformats
+      vlc
+      yad
+
+      # tools
+      bat
+      eza
+      fd
+      ripgrep
+      fzf
+      socat
+      jq
+      gojq
+      acpi
+      ffmpeg
+      libnotify
+      killall
+      zip
+      unzip
+      glib
+      foot
+      kitty
+      starship
+      showmethekey
+      vscode
+      ydotool
+
+      # theming tools
+      gradience
+      gnome-tweaks
+
+      # hyprland
+      brightnessctl
+      cliphist
+      fuzzel
+      grim
+      hyprpicker
+      tesseract
+      imagemagick
+      pavucontrol
+      playerctl
+      swappy
+      swaylock-effects
+      swayidle
+      slurp
+      swww
+      wayshot
+      wlsunset
+      wl-clipboard
+      wf-recorder
     ];
   };
 
