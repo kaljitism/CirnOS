@@ -4,7 +4,6 @@
   home = {
     packages = with pkgs; with nodePackages_latest; with gnome; with libsForQt5; [
       discord
-      redlib
       spotify
       obsidian
       hakuneko
@@ -24,8 +23,7 @@
       nvidia-docker
       docker
       podman
-      kvm
-      qemu
+      qemu-kvm
       dart
       flutter
       nodejs
