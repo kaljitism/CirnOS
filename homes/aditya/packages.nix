@@ -23,7 +23,7 @@
       nvidia-docker
       docker
       podman
-      qemu-kvm
+      qemu_kvm
       dart
       flutter
       nodejs
