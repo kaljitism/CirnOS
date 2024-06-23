@@ -21,6 +21,21 @@
       lexend
       gnome.nautilus-python
       twitter-color-emoji
+      cheese # webcam tool
+      gnome.gnome-music
+      gnome.epiphany # web browser
+      gnome.geary # email reader
+      gnome.evince # document viewer
+      gnome.gnome-characters
+      gnome.totem # video player
+      gnome.hitori # sudoku game
+      gnome.atomix # puzzle game
+      gnome.yelp # Help view
+      gnome.gnome-contacts
+      gnome.gnome-initial-setup
+      gnome.gnome-shell-extensions
+      gnome.gnome-maps
+      gnome.gnome-font-viewer
     ];
 
     gnome.excludePackages =
@@ -32,23 +47,7 @@
         snapshot
       ])
       ++ (with pkgs.gnome; [
-        cheese # webcam tool
-        gnome-music
-        epiphany # web browser
-        geary # email reader
-        evince # document viewer
-        # gnome-characters
-        totem # video player
-        tali # poker game
-        iagno # go game
-        hitori # sudoku game
-        atomix # puzzle game
-        yelp # Help view
-        gnome-contacts
-        gnome-initial-setup
-        gnome-shell-extensions
-        gnome-maps
-        # gnome-font-viewer
+        
       ]);
   };
 }

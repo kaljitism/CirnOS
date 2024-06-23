@@ -3,8 +3,42 @@
 
   home = {
     packages = with pkgs; with nodePackages_latest; with gnome; with libsForQt5; [
+      discord
+      redlib
+      spotify
+      obsidian
+      hakuneko
+      calibre
+      torrential
+      lutris
+
       i3 # gaming
       sway
+
+      # Development
+      jetbrains.jdk
+      jetbrains.idea-ultimate
+      jetbrains.webstorm
+      jetbrains.datagrip
+      android-studio
+      nvidia-docker
+      docker
+      podman
+      kvm
+      qemu
+      dart
+      flutter
+      nodejs
+      gjs
+      bun
+      cargo
+      go
+      gcc
+      typescript
+      eslint
+      # very important stuff
+      uwuify
+
 
       # gui
       blueberry
@@ -67,18 +101,6 @@
       wlsunset
       wl-clipboard
       wf-recorder
-
-      # langs
-      nodejs
-      gjs
-      bun
-      cargo
-      go
-      gcc
-      typescript
-      eslint
-      # very important stuff
-      uwuify
     ];
   };
 }

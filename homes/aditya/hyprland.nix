@@ -52,7 +52,7 @@ in
         "swww kill; swww init"
         "fcitx5"
         ''
-          swayidle -w timeout 300 'swaylock -f' timeout 450 'pidof java || systemctl suspend' before-sleep 'swaylock -f'
+          swayidle -w timeout 1200 'swaylock -f' timeout 1500 'pidof java || systemctl suspend' before-sleep 'swaylock -f'
         ''
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
@@ -70,12 +70,12 @@ in
       };
       dwindle = {
         preserve_split = true;
-        smart_resizing = false;
+        smart_resizing = true;
       };
       gestures = {
         workspace_swipe = true;
         workspace_swipe_distance = 700;
-        workspace_swipe_fingers = 4;
+        workspace_swipe_fingers = 3;
         workspace_swipe_cancel_ratio = 0.2;
         workspace_swipe_min_speed_to_force = 5;
         workspace_swipe_direction_lock = true;

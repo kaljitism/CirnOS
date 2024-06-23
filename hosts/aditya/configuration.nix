@@ -76,7 +76,7 @@
     rtkit.enable = true;
     polkit.enable = true;
     pam.services.swaylock = { };
-    # pam.services.swaylock-effects = {};
+    pam.services.swaylock-effects = {};
   };
 
   # dconf
@@ -107,9 +107,14 @@
     systemPackages = with pkgs; [
       curl
       zsh
-      fish
       git
       gh
+      kdePackages.kate
+      gnomeExtensions.wallpaper-slideshow
+      neovim
+      vim
+      lf
+      mangohud
       # home-manager
       wget
       nixpkgs-fmt

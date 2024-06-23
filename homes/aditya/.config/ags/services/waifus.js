@@ -47,7 +47,7 @@ class WaifuService extends Service {
     _mode = 'im'; // Allowed: im
     _responses = [];
     _queries = [];
-    _nsfw = false;
+    _nsfw = true;
     _minHeight = 600;
     _status = 0;
 
@@ -86,7 +86,7 @@ class WaifuService extends Service {
         const userArgs = msg.split(/\s+/);
 
         let taglist = [];
-        this._nsfw = false;
+        this._nsfw = true;
         // Construct body/headers
         for (let i = 0; i < userArgs.length; i++) {
             const thisArg = userArgs[i].trim();
