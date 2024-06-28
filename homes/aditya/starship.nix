@@ -15,6 +15,9 @@ in
     enable = true;
     settings = {
       add_newline = true;
+      shell = {
+        disabled = false;
+      };
       format = lib.strings.concatStrings [
         "$nix_shell"
         "$os"
@@ -68,18 +71,18 @@ in
         truncation_length = 6;
         truncation_symbol = "~/󰇘/";
       };
-      # directory.substitutions = {
-      #   "Documents" = "󰈙 ";
-      #   "Downloads" = " ";
-      #   "Music" = " ";
-      #   "Pictures" = " ";
-      #   "Videos" = " ";
-      #   "Projects" = "󱌢 ";
-      #   "School" = "󰑴 ";
-      #   "GitHub" = "";
-      #   ".config" = " ";
-      #   "Vault" = "󱉽 ";
-      # };
+      directory.substitutions = {
+         "Documents" = "󰈙 ";
+         "Downloads" = " ";
+         "Music" = " ";
+         "Pictures" = " ";
+         "Videos" = " ";
+         "Projects" = "󱌢 ";
+         "School" = "󰑴 ";
+         "GitHub" = "";
+         ".config" = " ";
+         "Vault" = "󱉽 ";
+      };
       git_branch = {
         symbol = "";
         style = "";

@@ -1,18 +1,21 @@
 # CirnOS
-- If you want my dotfiles offered separately, they're here: https://github.com/end-4/dots-hyprland
-- It's impure but it works
-- I am very uncertain about this NixOS config due to my lack of experience. I hopped to CachyOS and this likely won't be updated
+- These files are taken from https://github.com/end-4/CirnOS and they include my own hardware configuration which might not 
+work for you. 
 
 # Installation
 ## Installing the whole system
-- Please be advised that this flake includes my hardware configuration
-  - I mount my Windows partition with a specific UUID to /mnt/Windows
-- So this configuration likely won't work on your device... idk
+Follow the following steps(Please file a bug if it doesn't work) - 
+1. Change the hosts/<username>/hardware-configuration.nix with your own
+2. Change the name of folders inside home/ and hosts/ to your own username
+3. Change the username, home-manager username and hostname in `./homes/default.nix`, `./hosts/default.nix` & if it 
+occurs at any other place. Note that if you don't, you might end up with a TTY session with no desktop. 
+4. Install home-manager and hyprland in your /etc/nixos/configuration.nix before you install dotFiles.
+
 ```bash
 git clone https://github.com/kaljitism/CirnOS.git && cd CirnOS
-IMPURITY_PATH=$(pwd) sudo --preserve-env=IMPURITY_PATH nixos-rebuild switch --flake . --impure
 ```
 
-## Installing only home manager stuff
-- Unfortunately I'm not knowledgeable enough to offer that (yet?). Just copy the homes folder and import it or something?
+```bash
+IMPURITY_PATH=$(pwd) sudo --preserve-env=IMPURITY_PATH nixos-rebuild switch --flake . --impure
+```
 

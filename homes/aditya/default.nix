@@ -60,6 +60,7 @@ in
 
   programs = {
     home-manager.enable = true;
+    starship.enable = true;
   };
   home.stateVersion = "23.05"; # this must be the version at which you have started using the program
 }

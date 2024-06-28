@@ -1,4 +1,5 @@
-{ pkgs, username, config, ... }: {
+{
+pkgs, username, config, ... }: {
   # nix
   documentation.nixos.enable = false; # .desktop
   nixpkgs.config.allowUnfree = true;
@@ -36,7 +37,11 @@
                 "electron-25.9.0"
               ];
 
+  programs.neovim.enable = true;
+  programs.neovim.defaultEditor = true;
+
   services = {
+    blueman.enable = true;
     envfs.enable = true;
     greetd = {
       enable = true;
@@ -109,13 +114,20 @@
   environment = {
     localBinInPath = true;
     systemPackages = with pkgs; with nodePackages_latest; with gnome; with libsForQt5; [
+      SDL2.dev
+      SDL2
+      tmux
+      fzf
+      zoxide
+      neovim
+      hyprpaper
+      blueman
       curl
       zsh
       git
       gh
       kate
       gnomeExtensions.wallpaper-slideshow
-      neovim
       vim
       lf
       mangohud
@@ -123,13 +135,17 @@
       wget
       nixpkgs-fmt
       nixfmt
-
-            discord
+      discord
       spotify
       hakuneko
       calibre
       torrential
       lutris
+
+      coreutils
+      clang
+      emacs
+      emacsGcc
 
       i3 # gaming
       sway
@@ -139,6 +155,7 @@
       jetbrains.idea-ultimate
       jetbrains.webstorm
       jetbrains.datagrip
+      jetbrains.clion
       android-studio
       nvidia-docker
       docker
@@ -174,6 +191,7 @@
       yad
 
       # tools
+      z-lua
       bat
       eza
       fd
@@ -226,6 +244,10 @@
   zramSwap.enable = true;
   zramSwap.memoryPercent = 100;
 
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball https://github.com/nix-community/emacs-overlay/archive/master.tar.gz))
+  ];
+
   # logind
   services.logind.extraConfig = ''
     HandlePowerKey=ignore
@@ -243,7 +265,7 @@
   # bluetooth
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = false;
+    powerOnBoot = true;
   };
 
   # Boot

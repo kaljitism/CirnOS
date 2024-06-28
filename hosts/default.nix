@@ -21,6 +21,10 @@ in
     modules =
       [
         {
+          users.users.aditya.home = "/home/aditya";
+        }
+
+        {
           # Impurity
           imports = [ impurity.nixosModules.impurity ];
           impurity.configRoot = self;

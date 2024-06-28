@@ -24,7 +24,7 @@ in
     icon = "org.gnome.Settings";
     exec = "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome.gnome-control-center}/bin/gnome-control-center";
     categories = [ "X-Preferences" ];
-    terminal = false;
+    terminal = true;
   };
 
   programs = {
@@ -57,21 +57,24 @@ in
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
         "hyprctl setcursor Bibata-Modern-Classic 24"
+        "foot"
       ];
       general = {
-        gaps_in = 4;
-        gaps_out = 5;
-        gaps_workspaces = 50;
-        border_size = 1;
+        gaps_in = 0;
+        gaps_out = 0;
+        gaps_workspaces = 0;
+        border_size = 0;
         layout = "dwindle";
         resize_on_border = true;
-        "col.active_border" = "rgba(471868FF)";
-        "col.inactive_border" = "rgba(4f4256CC)";
+        extend_border_grab_area = 15;
+        hover_icon_on_border = true;
       };
+  
       dwindle = {
         preserve_split = true;
         smart_resizing = true;
       };
+  
       gestures = {
         workspace_swipe = true;
         workspace_swipe_distance = 700;
@@ -82,54 +85,41 @@ in
         workspace_swipe_direction_lock_threshold = 10;
         workspace_swipe_create_new = true;
       };
+      
       binds = { scroll_event_delay = 0; };
+      
       input = {
-        # Keyboard: Add a layout and uncomment kb_options for Win+Space switching shortcut
         kb_layout = "us";
-        # kb_options = grp:win_space_toggle;
+        kb_options = grp:win_space_toggle;
         numlock_by_default = true;
         repeat_delay = 250;
         repeat_rate = 35;
+        follow_mouse = 1;
 
         touchpad = {
+          middle_button_emulation = true;
           natural_scroll = true;
           disable_while_typing = true;
           clickfinger_behavior = true;
-          scroll_factor = 0.5;
+          scroll_factor = 2;
         };
-
-        # special_fallthrough = true   # only in new hyprland versions. but they're hella fucked
-        follow_mouse = 1;
       };
+
       decoration = {
-        rounding = 20;
+        active_opacity = 0.9;
+        inactive_opacity = 0.9;
+        fullscreen_opacity = 0.9;
+        rounding = 10;
+        drop_shadow = false;
 
         blur = {
-          enabled = true;
-          xray = true;
-          special = false;
-          new_optimizations = true;
-          size = 5;
-          passes = 4;
-          brightness = 1;
-          noise = 1.0e-2;
-          contrast = 1;
+          enabled = false;
         };
-        # Shadow
-        drop_shadow = false;
-        shadow_ignore_window = true;
-        shadow_range = 20;
-        shadow_offset = "0 2";
-        shadow_render_power = 2;
-        "col.shadow" = "rgba(0000001A)";
-
-        # Dim
-        dim_inactive = false;
-        dim_strength = 0.1;
-        dim_special = 0;
       };
+
       animations = {
         enabled = true;
+        first_launch_animation = true;
         bezier = [
           "md3_decel, 0.05, 0.7, 0.1, 1"
           "md3_accel, 0.3, 0, 0.8, 0.15"
@@ -155,18 +145,18 @@ in
       misc = {
         vfr = 1;
         vrr = 1;
-        # layers_hog_mouse_focus = true;
         focus_on_activate = true;
         animate_manual_resizes = false;
-        animate_mouse_windowdragging = false;
+        animate_mouse_windowdragging = true;
         enable_swallow = false;
         swallow_regex = "(foot|kitty|allacritty|Alacritty)";
 
         disable_hyprland_logo = true;
+        disable_splash_rendering = false;
         new_window_takes_over_fullscreen = 2;
       };
       debug = {
-        # overlay = true;
+        # overlay = false;
         # damage_tracking = 0;
         # damage_blink = true;
       };
@@ -174,7 +164,8 @@ in
         let SLURP_COMMAND = "$(slurp -d -c eedcf5BB -b 4f425644 -s 00000000)";
         in [
           "Super, C, exec, code --password-store=gnome"
-          "Super, T, exec, foot --override shell=fish"
+          "Super, T, exec, foot"
+          "Super, O, exec, fuzzel"
           "Super, E, exec, nautilus --new-window"
           "Super+Alt, E, exec, thunar"
           "Super, W, exec, firefox"
@@ -213,7 +204,6 @@ in
           "Super, Slash, exec, ags -t 'cheatsheet'"
           "Super, B, exec, ags -t 'sideleft'"
           "Super, A, exec, ags -t 'sideleft'"
-          "Super, O, exec, ags -t 'sideleft'"
           "Super, N, exec, ags -t 'sideright'"
           "Super, M, exec, ags run-js 'openMusicControls.value = !openMusicControls.value;'"
           "Super, Comma, exec, ags run-js 'openColorScheme.value = true; Utils.timeout(2000, () => openColorScheme.value = false);'"
@@ -310,8 +300,8 @@ in
         ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         ",XF86MonBrightnessUp, exec, ags run-js 'brightness.screen_value += 0.05;indicator.popup(1);'"
         ",XF86MonBrightnessDown, exec, ags run-js 'brightness.screen_value -= 0.05;indicator.popup(1);'"
-        # ",XF86AudioRaiseVolume, exec, ags run-js 'indicator.popup(1);'"
-        # ",XF86AudioLowerVolume, exec, ags run-js 'indicator.popup(1);'"
+        ",XF86AudioRaiseVolume, exec, ags run-js 'indicator.popup(1);'"
+        ",XF86AudioLowerVolume, exec, ags run-js 'indicator.popup(1);'"
         ",XF86MonBrightnessUp, exec, ags run-js 'indicator.popup(1);'"
         ",XF86MonBrightnessDown, exec, ags run-js 'indicator.popup(1);'"
         "Alt, I, exec, ydotool key 103:1 103:0 "
@@ -331,7 +321,6 @@ in
         "Super, Apostrophe, splitratio, 0.1"
       ];
       windowrule = [
-        "noblur,.*" # Disables blur for windows. Substantially improves performance.
         "float, ^(steam)$"
         "pin, ^(showmethekey-gtk)$"
         "float,title:^(Open File)(.*)$"
@@ -341,17 +330,15 @@ in
         "float,title:^(Save As)(.*)$"
         "float,title:^(Library)(.*)$ "
       ];
-      windowrulev2 = [ "tile,class:(wpsoffice)" ];
+      windowrulev2 = [ 
+        "tile,class:(wpsoffice)"
+        "opacity 0.95 0.95 0.95,class:^(foot)$"
+      ];
       layerrule = [
         "xray 1, .*"
-        "noanim, selection"
-        "noanim, overview"
-        "noanim, anyrun"
         "blur, swaylock"
         "blur, eww"
         "ignorealpha 0.8, eww"
-        "noanim, noanim"
-        "blur, noanim"
         "blur, gtk-layer-shell"
         "ignorezero, gtk-layer-shell"
         "blur, launcher"
@@ -359,8 +346,6 @@ in
         "blur, notifications"
         "ignorealpha 0.69, notifications"
         "blur, session"
-        "noanim, sideright"
-        "noanim, sideleft"
       ];
       source = [
         "./colors.conf"
