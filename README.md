@@ -16,6 +16,6 @@ git clone https://github.com/kaljitism/CirnOS.git && cd CirnOS
 ```
 
 ```bash
-IMPURITY_PATH=$(pwd) sudo --preserve-env=IMPURITY_PATH nixos-rebuild switch --flake . --impure
+sh ./buid.sh
 ```
 
