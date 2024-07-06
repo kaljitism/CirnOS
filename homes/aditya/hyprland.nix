@@ -63,7 +63,7 @@ in
         gaps_in = 0;
         gaps_out = 0;
         gaps_workspaces = 0;
-        border_size = 0;
+        border_size = 1;
         layout = "dwindle";
         resize_on_border = true;
         extend_border_grab_area = 15;
@@ -101,15 +101,15 @@ in
           natural_scroll = true;
           disable_while_typing = true;
           clickfinger_behavior = true;
-          scroll_factor = 2;
+          scroll_factor = 1;
         };
       };
 
       decoration = {
-        active_opacity = 0.9;
-        inactive_opacity = 0.9;
-        fullscreen_opacity = 0.9;
-        rounding = 10;
+        active_opacity = 0.95;
+        inactive_opacity = 0.95;
+        fullscreen_opacity = 0.95;
+        rounding = 1;
         drop_shadow = false;
 
         blur = {

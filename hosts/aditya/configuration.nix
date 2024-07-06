@@ -28,10 +28,21 @@ pkgs, username, config, ... }: {
   };
 
   # virtualisation
-  programs.virt-manager.enable = true;
+   virtualisation.containers.enable = true;
   virtualisation = {
-    libvirtd.enable = true;
+    podman = {
+      enable = true;
+      enableNvidia = true;
+      # Create a `docker` alias for podman, to use it as a drop-in replacement
+      dockerCompat = true;
+
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings.dns_enabled = true;
+    };
   };
+
+  
+
 
   nixpkgs.config.permittedInsecurePackages = [
                 "electron-25.9.0"
@@ -63,6 +74,14 @@ pkgs, username, config, ... }: {
         ];
       };
     };
+  };
+
+  hardware.opengl = {
+    enable = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      intel-compute-runtime
+    ];
   };
 
   systemd = {
@@ -110,16 +129,41 @@ pkgs, username, config, ... }: {
       ];
     };
   };
+
   # packages
   environment = {
     localBinInPath = true;
     systemPackages = with pkgs; with nodePackages_latest; with gnome; with libsForQt5; [
+      fish
+      timer
+      speechd
+      lolcat
+      ranger      
+      emacs-gtk
+      nvidia-podman
+      nvidia-docker
+      dive # look into docker image layers
+      podman-tui # status of containers in the terminal
+      docker-compose # start group of containers for dev
+      podman-compose # start group of containers for dev      
+      podman
+      docker
+      glxinfo
+      distrobox
+      neovim
+      bitwig-studio
+      krita
+      davinci-resolve
+      obsidian
+      blender
+      inkscape-with-extensions
+      reaper
+      wine
       SDL2.dev
       SDL2
       tmux
       fzf
       zoxide
-      neovim
       hyprpaper
       blueman
       curl
@@ -144,11 +188,9 @@ pkgs, username, config, ... }: {
 
       coreutils
       clang
-      emacs
-      emacsGcc
 
       i3 # gaming
-      sway
+      sway  
 
       # Development
       jetbrains.jdk
@@ -157,10 +199,6 @@ pkgs, username, config, ... }: {
       jetbrains.datagrip
       jetbrains.clion
       android-studio
-      nvidia-docker
-      docker
-      podman
-      qemu_kvm
       dart
       flutter
       nodejs
@@ -240,9 +278,11 @@ pkgs, username, config, ... }: {
     ];
   };
 
+  qt.enable = true;
+
   # ZRAM
   zramSwap.enable = true;
-  zramSwap.memoryPercent = 100;
+  zramSwap.memoryPercent = 100; 
 
   nixpkgs.overlays = [
     (import (builtins.fetchTarball https://github.com/nix-community/emacs-overlay/archive/master.tar.gz))
@@ -258,7 +298,7 @@ pkgs, username, config, ... }: {
   users = {
     users.${username} = {
       isNormalUser = true;
-      extraGroups = [ "networkmanager" "wheel" "video" "input" "uinput" "libvirtd" ];
+      extraGroups = [ "networkmanager" "wheel" "video" "input" "uinput" "libvirtd" "docker" "podman" ];
     };
   };
 
